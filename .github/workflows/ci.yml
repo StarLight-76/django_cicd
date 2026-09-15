@@ -34,18 +34,18 @@ jobs:
 
     steps:
       - name: Проверяем на наличие изменений
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Установка Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: "3.10"
 
       - name: Установка зависимостей
         run: pip install -r requirements.txt
 
       - name: Линтинг
-        run: flake8 logistic/ --exclude=logistic/migrations/
+        run: flake8 logistic/ --exclude=logistic/migrations
 
       - name: Тестирование
         run: python manage.py test
@@ -66,4 +66,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: expect /Users/Windows/PycharmProjects/django_cicd
+          script: expect home/dmitry/django_cicd
